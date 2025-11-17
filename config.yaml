@@ -1,0 +1,105 @@
+training_hard: # training sets
+
+    type: 0 # online mining. csv will contain catalog
+
+    csv: "data/hard_train_data.csv"
+
+    dir: "train"
+
+    batch_size: 5
+
+    sub_batch_size: 196
+
+    epoch_multiplier: 2
+
+
+
+training_random: # training sets
+
+    type: 0 # online mining. csv will contain catalog
+
+    csv: "data/random_train_data.csv"
+
+    dir: "train"
+
+    sets_per_person: 200 # 50
+
+    forgery_negative_ratio: 3
+
+    external_negative_ratio: 1
+
+    batch_size: 196 # or 64 if GPU can handle it
+
+    
+
+testing_ext: # testing sets
+
+    type: 1 # pre-generated
+
+    csv: "data/ext_test_data.csv"
+
+    dir: "test"
+
+    sets_per_person: 800 # 90
+
+    forgery_negative_ratio: 3
+
+    external_negative_ratio: 1
+
+    batch_size: 196 # or 64 if GPU can handle it
+
+
+
+testing_int: # testing sets
+
+    type: 1 # pre-generated
+
+    csv: "data/int_test_data.csv"
+
+    dir: "train"
+
+    sets_per_person: 40 # 50
+
+    forgery_negative_ratio: 1
+
+    external_negative_ratio: 0
+
+    batch_size: 196 # or 64 if GPU can handle it
+
+
+
+result:
+
+    dir: "model"
+
+    record: "data/result.json"
+
+
+
+histogram:
+
+    dir: data/plots
+
+    
+
+epoch: 50
+
+data_loader_n_worker: 16 # or 4 if cpu can handle
+
+loss:
+
+    margin: 0.5 # range is 0 to 2.
+
+                # 0 for "learn nothing"
+
+                # 2 for "learn it perfectlu or you get punished" 
+
+    pos_threshold: 0.0 # positive mistake threshold
+
+    neg_threshold: 0.0 # negative mistake threshold
+
+    punishment_scale: 1.0 # punishment scale for mistake threshold
+
+    pos_weight: 0.2 # positive-pull weight
+
+    neg_weight: 0.2 # negative-push weight
